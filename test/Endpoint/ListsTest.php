@@ -35,20 +35,20 @@ class ListsTest extends Base
     {
         $endpoint = new Lists();
 
-        $response = $endpoint->create(array(
+        $response = $endpoint->create([
             // required
-            'general' => array(
+            'general' => [
                 'name'          => 'My list created from the API for tests',
                 'description'   => 'My list created from the API for tests',
-            ),
+            ],
             // required
-            'defaults' => array(
+            'defaults' => [
                 'from_name' => 'John Doe',
                 'from_email'=> 'johndoe@doe.com',
                 'reply_to'  => 'johndoe@doe.com',
                 'subject'   => 'Hello!',
-            ),
-            'company' => array(
+            ],
+            'company' => [
                 'name'      => 'John Doe INC',
                 'country'   => 'United States',
                 'zone'      => 'New York',
@@ -57,8 +57,8 @@ class ListsTest extends Base
                 'zone_name' => '',
                 'city'      => 'New York City',
                 'zip_code'  => '10019',
-            ),
-        ));
+            ],
+        ]);
 
         $this->assertInstanceOf(Response::class, $response);
         $this->assertTrue($response->getIsSuccess());

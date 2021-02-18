@@ -29,7 +29,7 @@ echo '</pre>';
 /*===================================================================================*/
 
 // CREATE CAMPAIGN
-$response = $endpoint->create(array(
+$response = $endpoint->create([
     'name'          => 'My API Campaign', // required
     'type'          => 'regular', // optional: regular or autoresponder
     'from_name'     => 'John Doe', // required
@@ -41,7 +41,7 @@ $response = $endpoint->create(array(
     'segment_uid'   => 'SEGMENT-UNIQUE-ID',// optional, only to narrow down
     
     // optional block, defaults are shown
-    'options' => array(
+    'options' => [
         'url_tracking'      => 'no', // yes | no
         'json_feed'         => 'no', // yes | no
         'xml_feed'          => 'no', // yes | no
@@ -58,18 +58,18 @@ $response = $endpoint->create(array(
         // - please note that this applies only for regular campaigns.
         //'cronjob'         => '0 0 * * *', // once a day
         //'cronjob_enabled' => 1, // 1 or 0
-    ),
+    ],
     
     // required block, archive or template_uid or content => required.
-    'template' => array(
+    'template' => [
         //'archive'         => file_get_contents(__DIR__ . '/template-example.zip'),
         //'template_uid'    => 'TEMPLATE-UNIQUE-ID',
         'content'           => file_get_contents(__DIR__ . '/template-example.html'),
         'inline_css'        => 'no', // yes | no
         'plain_text'        => null, // leave empty to auto generate
         'auto_plain_text'   => 'yes', // yes | no
-    ),
-));
+    ],
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';
@@ -79,7 +79,7 @@ echo '</pre>';
 /*===================================================================================*/
 
 // UPDATE CAMPAIGN
-$response = $endpoint->update('CAMPAIGN-UNIQUE-ID', array(
+$response = $endpoint->update('CAMPAIGN-UNIQUE-ID', [
     'name'          => 'My API Campaign UPDATED', // optional at update
     'from_name'     => 'John Doe', // optional at update
     'from_email'    => 'john.doe@doe.com', // optional at update
@@ -90,24 +90,24 @@ $response = $endpoint->update('CAMPAIGN-UNIQUE-ID', array(
     'segment_uid'   => 'SEGMENT-UNIQUE-ID',// optional, only to narrow down
     
     // optional block, defaults are shown
-    'options' => array(
+    'options' => [
         'url_tracking'      => 'no', // yes | no
         'json_feed'         => 'no', // yes | no
         'xml_feed'          => 'no', // yes | no
         'plain_text_email'  => 'yes',// yes | no
         'email_stats'       => null, // a valid email address where we should send the stats after campaign done
-    ),
+    ],
     
     // optional block at update, archive or template_uid or content => required.
-    'template' => array(
+    'template' => [
         //'archive'         => file_get_contents(__DIR__ . '/template-example.zip'),
         //'template_uid'    => 'TEMPLATE-UNIQUE-ID',
         'content'           => file_get_contents(__DIR__ . '/template-example.html'),
         'inline_css'        => 'no', // yes | no
         'plain_text'        => null, // leave empty to auto generate
         'auto_plain_text'   => 'yes', // yes | no
-    ),
-));
+    ],
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';

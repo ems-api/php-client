@@ -18,10 +18,10 @@ class Base extends TestCase
     {
         // configuration object
         try {
-            \EmsApi\Base::setConfig(new Config(array(
+            \EmsApi\Base::setConfig(new Config([
                 'apiUrl' => getenv('EMS_API_URL') ? getenv('EMS_API_URL') : '',
                 'apiKey' => getenv('EMS_API_KEY') ? getenv('EMS_API_KEY') : '',
-            )));
+            ]));
         } catch (ReflectionException $e) {
         }
         

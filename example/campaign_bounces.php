@@ -19,11 +19,11 @@ echo '</pre>';
 /*===================================================================================*/
 
 // CREATE BOUNCE
-$response = $endpoint->create('CAMPAIGN-UNIQUE-ID', array(
+$response = $endpoint->create('CAMPAIGN-UNIQUE-ID', [
     'message'        => 'The reason why this email bounced', // max 250 chars
     'bounce_type'    => 'hard', // hard, soft or internal
     'subscriber_uid' => 'SUBSCRIBER-UNIQUE-ID' // 13 chars unique subscriber identifier
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';

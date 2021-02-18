@@ -19,9 +19,9 @@ echo '</pre>';
 /*===================================================================================*/
 
 // Search ALL ITEMS (available from MailWizz 1.4.4)
-$response = $endpoint->searchTemplates($pageNumber = 1, $perPage = 10, array(
+$response = $endpoint->searchTemplates($pageNumber = 1, $perPage = 10, [
     'name' => 'my template name'
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<pre>';
@@ -52,12 +52,12 @@ echo '</pre>';
 
 // CREATE A NEW TEMPLATE
 $rand = rand();
-$response = $endpoint->create(array(
+$response = $endpoint->create([
     'name'          => 'My API template ' . $rand,
     'content'       => file_get_contents(__DIR__ . '/template-example.html'),
     //'archive'     => file_get_contents(__DIR__ . '/template-example.zip'),
     'inline_css'    => 'no',// yes|no
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';
@@ -67,12 +67,12 @@ echo '</pre>';
 /*===================================================================================*/
 
 // UPDATE A TEMPLATE
-$response = $endpoint->update('TEMPLATE-UNIQUE-ID', array(
+$response = $endpoint->update('TEMPLATE-UNIQUE-ID', [
     'name'          => 'My API template - updated' . $rand,
     'content'       => file_get_contents(__DIR__ . '/template-example.html'),
     //'archive'     => file_get_contents(__DIR__ . '/template-example.zip'),
     'inline_css'    => 'no',// yes|no
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';

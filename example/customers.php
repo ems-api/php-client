@@ -8,16 +8,16 @@ $endpoint = new EmsApi\Endpoint\Customers();
 /*===================================================================================*/
 
 // CREATE CUSTOMER
-$response = $endpoint->create(array(
-    'customer' => array(
+$response = $endpoint->create([
+    'customer' => [
         'first_name' => 'John',
         'last_name'  => 'Doe',
         'email'      => 'john.doe@doe.com',
         'password'   => 'superDuperPassword',
         'timezone'   => 'UTC',
-    ),
+    ],
     // company is optional, unless required from app settings
-    'company'  => array(
+    'company'  => [
         'name'     => 'John Doe LLC',
         'country'  => 'United States', // see the countries endpoint for available countries and their zones
         'zone'     => 'New York', // see the countries endpoint for available countries and their zones
@@ -25,8 +25,8 @@ $response = $endpoint->create(array(
         'zip_code' => 11222,
         'address_1'=> 'Some Address',
         'address_2'=> 'Some Other Address',
-    ),
-));
+    ],
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';

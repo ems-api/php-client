@@ -10,26 +10,26 @@ $isAjaxRequest = !empty($_SERVER['HTTP_X_REQUESTED_WITH']) && strtolower($_SERVE
 if ($isAjaxRequest && !empty($_POST)) {
     $listUid    = 'LIST-UNIQUE-ID';// you'll take this from your customers area, in list overview from the address bar.
     $endpoint   = new EmsApi\Endpoint\ListSubscribers();
-    $response   = $endpoint->create($listUid, array(
+    $response   = $endpoint->create($listUid, [
         'EMAIL' => isset($_POST['EMAIL']) ? $_POST['EMAIL'] : null,
         'FNAME' => isset($_POST['FNAME']) ? $_POST['FNAME'] : null,
         'LNAME' => isset($_POST['LNAME']) ? $_POST['LNAME'] : null,
-    ));
+    ]);
     $response   = $response->body;
     
     // if the returned status is success, we are done.
     if ($response->itemAt('status') == 'success') {
-        exit(json_encode(array(
+        exit(json_encode([
             'status'    => 'success',
             'message'   => 'Thank you for joining our email list. Please confirm your email address now!'
-        )));
+        ]));
     }
     
     // otherwise, the status is error
-    exit(json_encode(array(
+    exit(json_encode([
         'status'    => 'error',
         'message'   => $response->itemAt('error')
-    )));
+    ]));
 }
 ?>
 <!DOCTYPE HTML>

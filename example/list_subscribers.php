@@ -49,9 +49,9 @@ echo '</pre>';
 /*===================================================================================*/
 
 // SEARCH BY CUSTOM FIELDS IN A LIST
-$response = $endpoint->searchByCustomFields('LIST-UNIQUE-ID', array(
+$response = $endpoint->searchByCustomFields('LIST-UNIQUE-ID', [
     'EMAIL' => 'john.doe@doe.com'
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';
@@ -61,11 +61,11 @@ echo '</pre>';
 /*===================================================================================*/
 
 // ADD SUBSCRIBER
-$response = $endpoint->create('LIST-UNIQUE-ID', array(
+$response = $endpoint->create('LIST-UNIQUE-ID', [
     'EMAIL'    => 'john.doe@doe.com', // the confirmation email will be sent!!! Use valid email address
     'FNAME'    => 'John',
     'LNAME'    => 'Doe'
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';
@@ -75,23 +75,23 @@ echo '</pre>';
 /*===================================================================================*/
 
 // ADD SUBSCRIBERS IN BULK (since MailWizz 1.8.1)
-$response = $endpoint->createBulk('LIST-UNIQUE-ID', array(
-    array(
+$response = $endpoint->createBulk('LIST-UNIQUE-ID', [
+    [
         'EMAIL'    => 'john.doe-1@doe.com',
         'FNAME'    => 'John',
         'LNAME'    => 'Doe'
-    ),
-    array(
+    ],
+    [
         'EMAIL'    => 'john.doe-2@doe.com',
         'FNAME'    => 'John',
         'LNAME'    => 'Doe'
-    ),
-    array(
+    ],
+    [
         'EMAIL'    => 'john.doe-3@doe.com',
         'FNAME'    => 'John',
         'LNAME'    => 'Doe'
-    )
-));
+    ]
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';
@@ -102,11 +102,11 @@ echo '</pre>';
 /*===================================================================================*/
 
 // UPDATE EXISTING SUBSCRIBER
-$response = $endpoint->update('LIST-UNIQUE-ID', 'SUBSCRIBER-UNIQUE-ID', array(
+$response = $endpoint->update('LIST-UNIQUE-ID', 'SUBSCRIBER-UNIQUE-ID', [
     'EMAIL'    => 'john.doe@doe.com',
     'FNAME'    => 'John',
     'LNAME'    => 'Doe Updated'
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr />';
@@ -117,11 +117,11 @@ echo '</pre>';
 /*===================================================================================*/
 
 // UPDATE EXISTING SUBSCRIBER BY EMAIL
-$response = $endpoint->updateByEmail('LIST-UNIQUE-ID', 'john@doe.com', array(
+$response = $endpoint->updateByEmail('LIST-UNIQUE-ID', 'john@doe.com', [
     'EMAIL'    => 'john.doe@doe.com',
     'FNAME'    => 'John',
     'LNAME'    => 'Doe Updated'
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr />';
@@ -132,11 +132,11 @@ echo '</pre>';
 /*===================================================================================*/
 
 // CREATE / UPDATE EXISTING SUBSCRIBER
-$response = $endpoint->createUpdate('LIST-UNIQUE-ID', array(
+$response = $endpoint->createUpdate('LIST-UNIQUE-ID', [
     'EMAIL'    => 'john.doe@doe.com',
     'FNAME'    => 'John',
     'LNAME'    => 'Doe Updated Second time'
-));
+]);
 
 // DISPLAY RESPONSE
 echo '<hr /><pre>';
