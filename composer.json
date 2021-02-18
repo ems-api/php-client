@@ -1,0 +1,32 @@
+{
+    "name": "ems-api/php",
+    "version": "1.0.0",
+    "description": "Email Marketing Software library for PHP",
+    "homepage": "https://github.com/ems-api/php",
+    "autoload": {
+        "psr-4": {
+            "EmsApi\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "EmsApi\\Test\\": "test/"
+        }
+    },
+    "require": {
+        "php": ">=7.2.5",
+        "ext-json": "*",
+        "ext-curl": "*"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^2.17",
+        "phpstan/phpstan": "^0.12.60",
+        "phpunit/phpunit": "^9.5"
+    },
+    "scripts": {
+        "test": "./vendor/bin/phpunit",
+        "fix-style": "./vendor/bin/php-cs-fixer fix .",
+        "analyse": "./vendor/bin/phpstan analyse src test example -c phpstan.neon --level max --memory-limit=-1"
+    },
+    "license": "MIT"
+}
