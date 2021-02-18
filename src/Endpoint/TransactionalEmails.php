@@ -26,15 +26,15 @@ class TransactionalEmails extends Base
      */
     public function getEmails(int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('transactional-emails'),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -51,12 +51,12 @@ class TransactionalEmails extends Base
      */
     public function getEmail(string $emailUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('transactional-emails/%s', $emailUid)),
             'paramsGet'     => [],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -79,13 +79,13 @@ class TransactionalEmails extends Base
             $data['plain_text'] = base64_encode($data['plain_text']);
         }
         
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl('transactional-emails'),
-            'paramsPost'    => array(
+            'paramsPost'    => [
                 'email'  => $data
-            ),
-        ));
+            ],
+        ]);
         
         return $client->request();
     }
@@ -100,10 +100,10 @@ class TransactionalEmails extends Base
      */
     public function delete(string $emailUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_DELETE,
             'url'       => $this->getConfig()->getApiUrl(sprintf('transactional-emails/%s', $emailUid)),
-        ));
+        ]);
         
         return $client->request();
     }

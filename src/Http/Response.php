@@ -60,7 +60,7 @@ class Response extends Base
     /**
      * @var array the list of http status codes definitions.
      */
-    public static $statusTexts = array(
+    public static $statusTexts = [
         100 => 'Continue',
         101 => 'Switching Protocols',
         102 => 'Processing',            // RFC2518
@@ -121,7 +121,7 @@ class Response extends Base
         508 => 'Loop Detected',                                               // RFC5842
         510 => 'Not Extended',                                                // RFC2774
         511 => 'Network Authentication Required',                             // RFC6585
-    );
+    ];
     
     /**
      * @var Request

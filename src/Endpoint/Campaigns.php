@@ -28,15 +28,15 @@ class Campaigns extends Base
      */
     public function getCampaigns(int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('campaigns'),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -54,12 +54,12 @@ class Campaigns extends Base
      */
     public function getCampaign(string $campaignUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('campaigns/%s', (string)$campaignUid)),
             'paramsGet'     => [],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -86,13 +86,13 @@ class Campaigns extends Base
             $data['template']['plain_text'] = base64_encode($data['template']['plain_text']);
         }
         
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl('campaigns'),
-            'paramsPost'    => array(
+            'paramsPost'    => [
                 'campaign'  => $data
-            ),
-        ));
+            ],
+        ]);
         
         return $client->request();
     }
@@ -120,13 +120,13 @@ class Campaigns extends Base
             $data['template']['plain_text'] = base64_encode($data['template']['plain_text']);
         }
         
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_PUT,
             'url'           => $this->getConfig()->getApiUrl(sprintf('campaigns/%s', $campaignUid)),
-            'paramsPut'     => array(
+            'paramsPut'     => [
                 'campaign'  => $data
-            ),
-        ));
+            ],
+        ]);
         
         return $client->request();
     }
@@ -141,10 +141,10 @@ class Campaigns extends Base
      */
     public function copy(string $campaignUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_POST,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/copy', $campaignUid)),
-        ));
+        ]);
         
         return $client->request();
     }
@@ -159,10 +159,10 @@ class Campaigns extends Base
      */
     public function pauseUnpause(string $campaignUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_PUT,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/pause-unpause', $campaignUid)),
-        ));
+        ]);
         
         return $client->request();
     }
@@ -177,10 +177,10 @@ class Campaigns extends Base
      */
     public function markSent(string $campaignUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_PUT,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/mark-sent', $campaignUid)),
-        ));
+        ]);
         
         return $client->request();
     }
@@ -195,10 +195,10 @@ class Campaigns extends Base
      */
     public function delete(string $campaignUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_DELETE,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s', $campaignUid)),
-        ));
+        ]);
         
         return $client->request();
     }
@@ -213,10 +213,10 @@ class Campaigns extends Base
      */
     public function getStats(string $campaignUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_GET,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/stats', $campaignUid)),
-        ));
+        ]);
 
         return $client->request();
     }

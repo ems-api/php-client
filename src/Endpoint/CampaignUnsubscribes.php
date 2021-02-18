@@ -25,15 +25,15 @@ class CampaignUnsubscribes extends Base
      */
     public function getUnsubscribes(string $campaignUid, int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/unsubscribes', $campaignUid)),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage,
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
 
         return $client->request();
     }

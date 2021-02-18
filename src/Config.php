@@ -21,10 +21,10 @@ class Config extends Base
      */
     private $_apiUrl = '';
 
-	/**
-	 * @var string the api key
-	 */
-	private $_apiKey = '';
+    /**
+     * @var string the api key
+     */
+    private $_apiKey = '';
 
     /**
      * Constructor
@@ -80,27 +80,27 @@ class Config extends Base
         return $this->_apiUrl . $endpoint;
     }
 
-	/**
-	 * @param string $key
-	 *
-	 * @return $this
-	 */
+    /**
+     * @param string $key
+     *
+     * @return $this
+     */
     public function setApiKey(string $key): self
     {
-    	$this->_apiKey = $key;
-    	return $this;
+        $this->_apiKey = $key;
+        return $this;
     }
 
-	/**
-	 * @return string
-	 * @throws Exception
-	 */
-    public function getApiKey(): string 
+    /**
+     * @return string
+     * @throws Exception
+     */
+    public function getApiKey(): string
     {
-	    if ($this->_apiKey === '') {
-		    throw new Exception('Please set the api key.');
-	    }
+        if ($this->_apiKey === '') {
+            throw new Exception('Please set the api key.');
+        }
 
-	    return $this->_apiKey;
+        return $this->_apiKey;
     }
 }

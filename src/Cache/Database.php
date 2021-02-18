@@ -80,12 +80,12 @@ class Database extends CacheAbstract
             $key = sha1($key);
             $con = $this->getConnection();
             $sth = $con->prepare('UPDATE `'.$this->getTableName().'` SET `value` = :v WHERE `key` = :k');
-            return $sth->execute(array(':v' => $value, ':k' => $key));
+            return $sth->execute([ ':v' => $value, ':k' => $key ]);
         }
         $key = sha1($key);
         $con = $this->getConnection();
         $sth = $con->prepare('INSERT INTO `'.$this->getTableName().'`(`key`, `value`) VALUES(:k, :v)');
-        return $sth->execute(array(':k' => $key, ':v' => $value));
+        return $sth->execute([ ':k' => $key, ':v' => $value ]);
     }
     
     /**
@@ -109,7 +109,7 @@ class Database extends CacheAbstract
 
         $con = $this->getConnection();
         $sth = $con->prepare('SELECT `value` FROM `'.$this->getTableName().'` WHERE `key` = :k LIMIT 1');
-        $sth->execute(array(':k' => $key));
+        $sth->execute([ ':k' => $key ]);
         $row = $sth->fetch(PDO::FETCH_ASSOC);
         $sth->closeCursor();
         return $this->_loaded[$key] = !empty($row['value']) ? unserialize($row['value']) : null;
@@ -136,7 +136,7 @@ class Database extends CacheAbstract
         
         $con = $this->getConnection();
         $sth = $con->prepare('DELETE FROM `'.$this->getTableName().'` WHERE `key` = :k');
-        return $sth->execute(array(':k' => $key));
+        return $sth->execute([ ':k' => $key ]);
     }
     
     /**

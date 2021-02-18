@@ -25,15 +25,15 @@ class CampaignBounces extends Base
      */
     public function getBounces(string $campaignUid, int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/bounces', $campaignUid)),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage,
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
 
         return $client->request();
     }
@@ -50,11 +50,11 @@ class CampaignBounces extends Base
      */
     public function create(string $campaignUid, array $data): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/bounces', (string)$campaignUid)),
             'paramsPost'    => $data,
-        ));
+        ]);
 
         return $client->request();
     }

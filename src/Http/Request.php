@@ -45,7 +45,7 @@ class Request extends Base
     public function send(): Response
     {
         foreach ($this->getEventHandlers(self::EVENT_BEFORE_SEND_REQUEST) as $callback) {
-            call_user_func_array($callback, array($this));
+            call_user_func_array($callback, [ $this ]);
         }
 
         $client         = $this->client;
@@ -92,7 +92,7 @@ class Request extends Base
                 }
             }
         }
-		
+        
         if ($client->getIsPutMethod() || $client->getIsDeleteMethod()) {
             $client->headers->add('X-HTTP-Method-Override', strtoupper($client->method));
         }
@@ -170,7 +170,7 @@ class Request extends Base
         if ((int)$params->itemAt('http_code') === 304 && $isCacheable && !empty($bodyFromCache)) {
             $decodedBody = $bodyFromCache;
         }
-		
+        
         $params->add('curl_code', $curlCode);
         $params->add('curl_message', $curlMessage);
         $params->add('body', new Params($decodedBody));
@@ -194,15 +194,15 @@ class Request extends Base
                 }
             }
             if ($etagNew && $etagNew != $etagCache) {
-                $cacheComponent->set($cacheKey, array(
+                $cacheComponent->set($cacheKey, [
                     'headers'   => $response->headers->toArray(),
                     'body'      => $response->body->toArray(),
-                ));
+                ]);
             }
         }
 
         foreach ($this->getEventHandlers(self::EVENT_AFTER_SEND_REQUEST) as $callback) {
-            $response = call_user_func_array($callback, array($this, $response));
+            $response = call_user_func_array($callback, [ $this, $response ]);
         }
 
         return $response;

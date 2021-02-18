@@ -28,15 +28,15 @@ class Countries extends Base
      */
     public function getCountries(int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('countries'),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -56,15 +56,15 @@ class Countries extends Base
      */
     public function getZones(int $countryId, int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('countries/%d/zones', $countryId)),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }

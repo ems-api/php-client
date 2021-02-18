@@ -29,15 +29,15 @@ class ListSegments extends Base
      */
     public function getSegments(string $listUid, int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/segments', $listUid)),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }

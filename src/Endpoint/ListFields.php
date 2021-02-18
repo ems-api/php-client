@@ -27,12 +27,12 @@ class ListFields extends Base
      */
     public function getFields(string $listUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/fields', $listUid)),
             'paramsGet'     => [],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }

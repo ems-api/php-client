@@ -41,11 +41,11 @@ class Customers extends Base
             $data['customer']['timezone'] = 'UTC';
         }
         
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl('customers'),
             'paramsPost'    => $data,
-        ));
+        ]);
         
         return $client->request();
     }

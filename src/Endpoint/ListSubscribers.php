@@ -24,15 +24,15 @@ class ListSubscribers extends Base
      */
     public function getSubscribers($listUid, int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers', $listUid)),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage,
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
 
         return $client->request();
     }
@@ -49,12 +49,12 @@ class ListSubscribers extends Base
      */
     public function getSubscriber($listUid, $subscriberUid)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers/%s', (string)$listUid, (string)$subscriberUid)),
             'paramsGet'     => [],
             'enableCache'   => true,
-        ));
+        ]);
 
         return $client->request();
     }
@@ -69,11 +69,11 @@ class ListSubscribers extends Base
      */
     public function create($listUid, array $data)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers', (string)$listUid)),
             'paramsPost'    => $data,
-        ));
+        ]);
 
         return $client->request();
     }
@@ -89,11 +89,11 @@ class ListSubscribers extends Base
      */
     public function createBulk($listUid, array $data)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers/bulk', (string)$listUid)),
-            'paramsPost'    => array('subscribers' => $data),
-        ));
+            'paramsPost'    => [ 'subscribers' => $data ],
+        ]);
 
         return $client->request();
     }
@@ -109,11 +109,11 @@ class ListSubscribers extends Base
      */
     public function update($listUid, $subscriberUid, array $data)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_PUT,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers/%s', (string)$listUid, (string)$subscriberUid)),
             'paramsPut'     => $data,
-        ));
+        ]);
 
         return $client->request();
     }
@@ -160,11 +160,11 @@ class ListSubscribers extends Base
      */
     public function unsubscribe($listUid, $subscriberUid)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_PUT,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers/%s/unsubscribe', (string)$listUid, (string)$subscriberUid)),
             'paramsPut'     => [],
-        ));
+        ]);
 
         return $client->request();
     }
@@ -209,13 +209,13 @@ class ListSubscribers extends Base
      */
     public function unsubscribeByEmailFromAllLists($emailAddress)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_PUT,
             'url'           => $this->getConfig()->getApiUrl('lists/subscribers/unsubscribe-by-email-from-all-lists'),
-            'paramsPut'     => array(
+            'paramsPut'     => [
                 'EMAIL' => $emailAddress,
-            ),
-        ));
+            ],
+        ]);
 
         return $client->request();
     }
@@ -231,11 +231,11 @@ class ListSubscribers extends Base
      */
     public function delete($listUid, $subscriberUid)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_DELETE,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers/%s', (string)$listUid, (string)$subscriberUid)),
             'paramsDelete'  => [],
-        ));
+        ]);
 
         return $client->request();
     }
@@ -270,11 +270,11 @@ class ListSubscribers extends Base
      */
     public function emailSearch($listUid, $emailAddress)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers/search-by-email', (string)$listUid)),
-            'paramsGet'     => array('EMAIL' => (string)$emailAddress),
-        ));
+            'paramsGet'     => [ 'EMAIL' => (string)$emailAddress ],
+        ]);
 
         return $client->request();
     }
@@ -289,11 +289,11 @@ class ListSubscribers extends Base
      */
     public function emailSearchAllLists($emailAddress)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('lists/subscribers/search-by-email-in-all-lists'),
-            'paramsGet'     => array('EMAIL' => (string)$emailAddress),
-        ));
+            'paramsGet'     => [ 'EMAIL' => (string)$emailAddress ],
+        ]);
 
         return $client->request();
     }
@@ -315,11 +315,11 @@ class ListSubscribers extends Base
         $paramsGet['page']      = $page;
         $paramsGet['per_page']  = $perPage;
         
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers/search-by-custom-fields', (string)$listUid)),
             'paramsGet'     => $paramsGet,
-        ));
+        ]);
 
         return $client->request();
     }
@@ -338,16 +338,16 @@ class ListSubscribers extends Base
      */
     public function searchByStatus(string $listUid, string $status, int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/subscribers', $listUid)),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage,
                 'status'    => $status,
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
 
         return $client->request();
     }

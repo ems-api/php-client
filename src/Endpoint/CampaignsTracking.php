@@ -27,11 +27,11 @@ class CampaignsTracking extends Base
      */
     public function trackUrl(string $campaignUid, string $subscriberUid, string $hash): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_GET,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/track-url/%s/%s', $campaignUid, $subscriberUid, (string)$hash)),
             'paramsGet' => [],
-        ));
+        ]);
         
         return $client->request();
     }
@@ -48,11 +48,11 @@ class CampaignsTracking extends Base
      */
     public function trackOpening(string $campaignUid, string $subscriberUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_GET,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/track-opening/%s', $campaignUid, $subscriberUid)),
             'paramsGet' => [],
-        ));
+        ]);
 
         return $client->request();
     }
@@ -70,11 +70,11 @@ class CampaignsTracking extends Base
      */
     public function trackUnsubscribe(string $campaignUid, string $subscriberUid, array $data = []): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'     => Client::METHOD_POST,
             'url'        => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/track-unsubscribe/%s', $campaignUid, $subscriberUid)),
             'paramsPost' => $data,
-        ));
+        ]);
 
         return $client->request();
     }

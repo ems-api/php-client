@@ -100,7 +100,7 @@ class Client extends Base
     {
         $this->populateFromArray($options);
         
-        foreach (array('paramsGet', 'paramsPost', 'paramsPut', 'paramsDelete', 'headers') as $param) {
+        foreach ([ 'paramsGet', 'paramsPost', 'paramsPut', 'paramsDelete', 'headers' ] as $param) {
             if (!($this->$param instanceof Params)) {
                 $this->$param = new Params(!is_array($this->$param) ? [] : $this->$param);
             }

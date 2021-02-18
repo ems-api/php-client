@@ -28,15 +28,15 @@ class Lists extends Base
      */
     public function getLists(int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('lists'),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -54,12 +54,12 @@ class Lists extends Base
      */
     public function getList(string $listUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s', $listUid)),
             'paramsGet'     => [],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -81,11 +81,11 @@ class Lists extends Base
      */
     public function create(array $data): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl('lists'),
             'paramsPost'    => $data,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -108,11 +108,11 @@ class Lists extends Base
      */
     public function update(string $listUid, array $data): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_PUT,
             'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s', $listUid)),
             'paramsPut'     => $data,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -128,10 +128,10 @@ class Lists extends Base
      */
     public function copy(string $listUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_POST,
             'url'       => $this->getConfig()->getApiUrl(sprintf('lists/%s/copy', $listUid)),
-        ));
+        ]);
         
         return $client->request();
     }
@@ -147,10 +147,10 @@ class Lists extends Base
      */
     public function delete(string $listUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_DELETE,
             'url'       => $this->getConfig()->getApiUrl(sprintf('lists/%s', $listUid)),
-        ));
+        ]);
         
         return $client->request();
     }

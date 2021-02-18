@@ -28,15 +28,15 @@ class Templates extends Base
      */
     public function getTemplates(int $page = 1, int $perPage = 10): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('templates'),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -57,16 +57,16 @@ class Templates extends Base
      */
     public function searchTemplates(int $page = 1, int $perPage = 10, array $filter = []): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('templates'),
-            'paramsGet'     => array(
+            'paramsGet'     => [
                 'page'      => $page,
                 'per_page'  => $perPage,
                 'filter'    => $filter,
-            ),
+            ],
             'enableCache'   => true,
-        ));
+        ]);
 
         return $client->request();
     }
@@ -84,12 +84,12 @@ class Templates extends Base
      */
     public function getTemplate(string $templateUid): Response
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl(sprintf('templates/%s', $templateUid)),
             'paramsGet'     => [],
             'enableCache'   => true,
-        ));
+        ]);
         
         return $client->request();
     }
@@ -113,13 +113,13 @@ class Templates extends Base
             $data['archive'] = base64_encode($data['archive']);
         }
         
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl('templates'),
-            'paramsPost'    => array(
+            'paramsPost'    => [
                 'template'  => $data
-            ),
-        ));
+            ],
+        ]);
         
         return $client->request();
     }
@@ -143,13 +143,13 @@ class Templates extends Base
             $data['archive'] = base64_encode($data['archive']);
         }
         
-        $client = new Client(array(
+        $client = new Client([
             'method'        => Client::METHOD_PUT,
             'url'           => $this->getConfig()->getApiUrl(sprintf('templates/%s', $templateUid)),
-            'paramsPut'     => array(
+            'paramsPut'     => [
                 'template'  => $data
-            ),
-        ));
+            ],
+        ]);
         
         return $client->request();
     }
@@ -164,10 +164,10 @@ class Templates extends Base
      */
     public function delete($templateUid)
     {
-        $client = new Client(array(
+        $client = new Client([
             'method'    => Client::METHOD_DELETE,
             'url'       => $this->getConfig()->getApiUrl(sprintf('templates/%s', $templateUid)),
-        ));
+        ]);
         
         return $client->request();
     }
