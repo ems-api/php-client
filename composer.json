@@ -1,8 +1,8 @@
 {
-    "name": "ems-api/php",
+    "name": "ems-api/php-client",
     "version": "1.0.0",
     "description": "Email Marketing Software library for PHP",
-    "homepage": "https://github.com/ems-api/php",
+    "homepage": "https://github.com/ems-api/php-client",
     "autoload": {
         "psr-4": {
             "EmsApi\\": "src/"
