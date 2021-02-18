@@ -11,7 +11,7 @@ Then follow the instructions from `example/setup.php` file.
 ## Test
 Following environment variables have to be set, with their proper values:  
 `EMS_API_URL`  
-`EMS_API_PUBLIC_KEY`  
+`EMS_API_KEY`  
 
 Then you can run the tests:
 ```bash
