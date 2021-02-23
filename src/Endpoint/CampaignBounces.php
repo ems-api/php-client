@@ -8,6 +8,10 @@ use EmsApi\Http\Response;
 use Exception;
 use ReflectionException;
 
+/**
+ * Class CampaignBounces
+ * @package EmsApi\Endpoint
+ */
 class CampaignBounces extends Base
 {
     /**

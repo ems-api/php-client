@@ -71,6 +71,7 @@ class Campaigns extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
     public function create(array $data): Response
     {
@@ -105,6 +106,7 @@ class Campaigns extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
     public function update(string $campaignUid, array $data): Response
     {
@@ -138,6 +140,7 @@ class Campaigns extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
     public function copy(string $campaignUid): Response
     {
@@ -156,6 +159,7 @@ class Campaigns extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
     public function pauseUnpause(string $campaignUid): Response
     {
@@ -174,6 +178,7 @@ class Campaigns extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
     public function markSent(string $campaignUid): Response
     {
@@ -192,6 +197,7 @@ class Campaigns extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
     public function delete(string $campaignUid): Response
     {
@@ -210,6 +216,7 @@ class Campaigns extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
     public function getStats(string $campaignUid): Response
     {

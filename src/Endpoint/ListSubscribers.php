@@ -127,7 +127,7 @@ class ListSubscribers extends Base
      * @return Response
      * @throws Exception
      */
-    public function updateByEmail($listUid, $emailAddress, array $data)
+    public function updateByEmail($listUid, $emailAddress, array $data): Response
     {
         $response = $this->emailSearch($listUid, $emailAddress);
 
@@ -158,7 +158,7 @@ class ListSubscribers extends Base
      * @return Response
      * @throws Exception
      */
-    public function unsubscribe($listUid, $subscriberUid)
+    public function unsubscribe($listUid, $subscriberUid): Response
     {
         $client = new Client([
             'method'        => Client::METHOD_PUT,
@@ -177,7 +177,7 @@ class ListSubscribers extends Base
      * @return Response
      * @throws Exception
      */
-    public function unsubscribeByEmail($listUid, $emailAddress)
+    public function unsubscribeByEmail($listUid, $emailAddress): Response
     {
         $response = $this->emailSearch($listUid, $emailAddress);
 
@@ -207,7 +207,7 @@ class ListSubscribers extends Base
      * @return Response
      * @throws Exception
      */
-    public function unsubscribeByEmailFromAllLists($emailAddress)
+    public function unsubscribeByEmailFromAllLists(string $emailAddress): Response
     {
         $client = new Client([
             'method'        => Client::METHOD_PUT,
@@ -226,10 +226,11 @@ class ListSubscribers extends Base
      *
      * @param string $listUid
      * @param string $subscriberUid
+     *
      * @return Response
      * @throws Exception
      */
-    public function delete($listUid, $subscriberUid)
+    public function delete(string $listUid, string $subscriberUid): Response
     {
         $client = new Client([
             'method'        => Client::METHOD_DELETE,
@@ -245,10 +246,11 @@ class ListSubscribers extends Base
      *
      * @param string $listUid
      * @param string $emailAddress
+     *
      * @return Response
      * @throws Exception
      */
-    public function deleteByEmail($listUid, $emailAddress)
+    public function deleteByEmail(string $listUid, string $emailAddress): Response
     {
         $response = $this->emailSearch($listUid, $emailAddress);
         $bodyData = $response->body->itemAt('data');
@@ -257,7 +259,7 @@ class ListSubscribers extends Base
             return $response;
         }
 
-        return $this->delete($listUid, $bodyData['subscriber_uid']);
+        return $this->delete($listUid, (string)$bodyData['subscriber_uid']);
     }
 
     /**
@@ -265,10 +267,11 @@ class ListSubscribers extends Base
      *
      * @param string $listUid
      * @param string $emailAddress
+     *
      * @return Response
      * @throws Exception
      */
-    public function emailSearch($listUid, $emailAddress)
+    public function emailSearch(string $listUid, string $emailAddress): Response
     {
         $client = new Client([
             'method'        => Client::METHOD_GET,
@@ -284,10 +287,11 @@ class ListSubscribers extends Base
      * Please note that this is available only for mailwizz >= 1.3.6.2
      *
      * @param string $emailAddress
+     *
      * @return Response
      * @throws Exception
      */
-    public function emailSearchAllLists($emailAddress)
+    public function emailSearchAllLists(string $emailAddress): Response
     {
         $client = new Client([
             'method'        => Client::METHOD_GET,
@@ -309,7 +313,7 @@ class ListSubscribers extends Base
      * @return Response
      * @throws Exception
      */
-    public function searchByCustomFields($listUid, array $fields = [], int $page = 1, int $perPage = 10): Response
+    public function searchByCustomFields(string $listUid, array $fields = [], int $page = 1, int $perPage = 10): Response
     {
         $paramsGet = $fields;
         $paramsGet['page']      = $page;

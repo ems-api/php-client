@@ -8,6 +8,10 @@ use EmsApi\Http\Response;
 use Exception;
 use ReflectionException;
 
+/**
+ * Class CampaignUnsubscribes
+ * @package EmsApi\Endpoint
+ */
 class CampaignUnsubscribes extends Base
 {
     /**

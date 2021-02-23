@@ -132,8 +132,9 @@ class Templates extends Base
      *
      * @return Response
      * @throws ReflectionException
+     * @throws Exception
      */
-    public function update($templateUid, array $data)
+    public function update(string $templateUid, array $data): Response
     {
         if (isset($data['content'])) {
             $data['content'] = base64_encode($data['content']);
@@ -162,7 +163,7 @@ class Templates extends Base
      * @return Response
      * @throws ReflectionException
      */
-    public function delete($templateUid)
+    public function delete(string $templateUid): Response
     {
         $client = new Client([
             'method'    => Client::METHOD_DELETE,

@@ -153,3 +153,15 @@ $response = $endpoint->delete('CAMPAIGN-UNIQUE-ID');
 echo '<hr /><pre>';
 print_r($response->body);
 echo '</pre>';
+
+/*===================================================================================*/
+
+// Get starts for CAMPAIGN
+$response = $endpoint->getStats('CAMPAIGN-UNIQUE-ID');
+
+// DISPLAY RESPONSE
+echo '<hr /><pre>';
+print_r($response->body);
+echo '</pre>';
+
+/*===================================================================================*/
