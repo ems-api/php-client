@@ -14,43 +14,43 @@ use ReflectionException;
  */
 class CampaignsTracking extends Base
 {
-    /**
-     * Track campaign url click for certain subscriber
-     *
-     * @param string $campaignUid
-     * @param string $subscriberUid
-     * @param string $hash
-     *
-     * @return Response
-     * @throws ReflectionException
-     * @throws Exception
-     */
-    public function trackUrl(string $campaignUid, string $subscriberUid, string $hash): Response
+	/**
+	 * Track campaign url click for certain subscriber
+	 *
+	 * @param string $campaignUid
+	 * @param string $subscriberUid
+	 * @param string $hash
+	 * @param string $trackClickUrlSegment
+	 *
+	 * @return Response
+	 * @throws ReflectionException
+	 */
+    public function trackUrl(string $campaignUid, string $subscriberUid, string $hash, string $trackClickUrlSegment = 'track-url'): Response
     {
         $client = new Client([
             'method'    => Client::METHOD_GET,
-            'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/track-url/%s/%s', $campaignUid, $subscriberUid, (string)$hash)),
+            'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/%s/%s/%s', $campaignUid, $trackClickUrlSegment, $subscriberUid, (string)$hash)),
             'paramsGet' => [],
         ]);
         
         return $client->request();
     }
 
-    /**
-     * Track campaign open for certain subscriber
-     *
-     * @param string $campaignUid
-     * @param string $subscriberUid
-     *
-     * @return Response
-     * @throws ReflectionException
-     * @throws Exception
-     */
-    public function trackOpening(string $campaignUid, string $subscriberUid): Response
+	/**
+	 * Track campaign open for certain subscriber
+	 *
+	 * @param string $campaignUid
+	 * @param string $subscriberUid
+	 * @param string $trackOpenUrlSegment
+	 *
+	 * @return Response
+	 * @throws ReflectionException
+	 */
+    public function trackOpening(string $campaignUid, string $subscriberUid, string $trackOpenUrlSegment = 'track-opening'): Response
     {
         $client = new Client([
             'method'    => Client::METHOD_GET,
-            'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/track-opening/%s', $campaignUid, $subscriberUid)),
+            'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/%s/%s', $campaignUid, $trackOpenUrlSegment, $subscriberUid)),
             'paramsGet' => [],
         ]);
 
