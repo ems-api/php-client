@@ -86,6 +86,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * This method is required by the interface IteratorAggregate.
      * @return ParamsIterator an iterator for traversing the items in the list.
      */
+	#[\ReturnTypeWillChange]
     public function getIterator()
     {
         return new ParamsIterator($this->_data);
@@ -96,6 +97,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * This method is required by Countable interface.
      * @return integer number of items in the map.
      */
+	#[\ReturnTypeWillChange]
     public function count()
     {
         return $this->getCount();
@@ -315,6 +317,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @param mixed $offset the offset to check on
      * @return boolean
      */
+	#[\ReturnTypeWillChange]
     public function offsetExists($offset)
     {
         return $this->contains($offset);
@@ -326,6 +329,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @param int $offset the offset to retrieve element.
      * @return mixed the element at the offset, null if no element is found at the offset
      */
+	#[\ReturnTypeWillChange]
     public function offsetGet($offset)
     {
         return $this->itemAt($offset);
@@ -341,6 +345,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @return void
      * @throws Exception
      */
+	#[\ReturnTypeWillChange]
     public function offsetSet($offset, $item)
     {
         $this->add($offset, $item);
@@ -355,6 +360,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @return void
      * @throws Exception
      */
+	#[\ReturnTypeWillChange]
     public function offsetUnset($offset)
     {
         $this->remove($offset);
