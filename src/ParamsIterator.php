@@ -52,7 +52,7 @@ class ParamsIterator implements Iterator
      *
      * @return void
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function rewind()
     {
         $this->_key = reset($this->_keys);
@@ -63,7 +63,7 @@ class ParamsIterator implements Iterator
      * This method is required by the interface Iterator.
      * @return mixed the key of the current array element
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function key()
     {
         return $this->_key;
@@ -74,7 +74,7 @@ class ParamsIterator implements Iterator
      * This method is required by the interface Iterator.
      * @return mixed the current array element
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function current()
     {
         return $this->_data[$this->_key];
@@ -86,7 +86,7 @@ class ParamsIterator implements Iterator
      *
      * @return void
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function next()
     {
         $this->_key = next($this->_keys);
@@ -97,7 +97,7 @@ class ParamsIterator implements Iterator
      * This method is required by the interface Iterator.
      * @return boolean
      */
-	#[\ReturnTypeWillChange]
+    #[\ReturnTypeWillChange]
     public function valid()
     {
         return $this->_key !== false;
