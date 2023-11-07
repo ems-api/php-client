@@ -14,17 +14,17 @@ use ReflectionException;
  */
 class CampaignsTracking extends Base
 {
-	/**
-	 * Track campaign url click for certain subscriber
-	 *
-	 * @param string $campaignUid
-	 * @param string $subscriberUid
-	 * @param string $hash
-	 * @param string $trackClickUrlSegment
-	 *
-	 * @return Response
-	 * @throws ReflectionException
-	 */
+    /**
+     * Track campaign url click for certain subscriber
+     *
+     * @param string $campaignUid
+     * @param string $subscriberUid
+     * @param string $hash
+     * @param string $trackClickUrlSegment
+     *
+     * @return Response
+     * @throws ReflectionException
+     */
     public function trackUrl(string $campaignUid, string $subscriberUid, string $hash, string $trackClickUrlSegment = 'track-url'): Response
     {
         $client = new Client([
@@ -36,16 +36,16 @@ class CampaignsTracking extends Base
         return $client->request();
     }
 
-	/**
-	 * Track campaign open for certain subscriber
-	 *
-	 * @param string $campaignUid
-	 * @param string $subscriberUid
-	 * @param string $trackOpenUrlSegment
-	 *
-	 * @return Response
-	 * @throws ReflectionException
-	 */
+    /**
+     * Track campaign open for certain subscriber
+     *
+     * @param string $campaignUid
+     * @param string $subscriberUid
+     * @param string $trackOpenUrlSegment
+     *
+     * @return Response
+     * @throws ReflectionException
+     */
     public function trackOpening(string $campaignUid, string $subscriberUid, string $trackOpenUrlSegment = 'track-opening'): Response
     {
         $client = new Client([

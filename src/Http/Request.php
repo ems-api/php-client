@@ -101,7 +101,8 @@ class Request extends Base
         if ($ch === false) {
             throw new Exception('Cannot initialize curl!');
         }
-        
+
+        curl_setopt($ch, CURLOPT_HTTP_VERSION, CURL_HTTP_VERSION_1_1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, $client->timeout);
         curl_setopt($ch, CURLOPT_TIMEOUT, $client->timeout);

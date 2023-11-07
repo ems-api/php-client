@@ -402,6 +402,21 @@ class ListSubscribers extends Base
     }
 
     /**
+     * Get only the blacklisted subscribers
+     *
+     * @param string $listUid
+     * @param int $page
+     * @param int $perPage
+     *
+     * @return Response
+     * @throws ReflectionException
+     */
+    public function getBlacklistedSubscribers(string $listUid, int $page = 1, int $perPage = 10): Response
+    {
+        return $this->searchByStatus($listUid, 'blacklisted', $page, $perPage);
+    }
+
+    /**
      * Create or update a subscriber in given list
      *
      * @param string $listUid
