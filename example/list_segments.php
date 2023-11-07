@@ -123,6 +123,7 @@ print_r($response->body);
 echo '</pre>';
 
 /*===================================================================================*/
+
 // GET THE LIST SEGMENT CONDITION OPERATORS
 $response = $endpoint->getConditionOperators();
 
