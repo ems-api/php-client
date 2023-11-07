@@ -21,23 +21,25 @@ class Campaigns extends Base
      *
      * @param int $page
      * @param int $perPage
+     * @param string $listUid
      *
      * @return Response
      * @throws ReflectionException
      * @throws Exception
      */
-    public function getCampaigns(int $page = 1, int $perPage = 10): Response
+    public function getCampaigns(int $page = 1, int $perPage = 10, string $listUid = ''): Response
     {
         $client = new Client([
             'method'        => Client::METHOD_GET,
             'url'           => $this->getConfig()->getApiUrl('campaigns'),
             'paramsGet'     => [
                 'page'      => $page,
-                'per_page'  => $perPage
+                'per_page'  => $perPage,
+                'list_uid'  => $listUid
             ],
             'enableCache'   => true,
         ]);
-        
+
         return $client->request();
     }
 
@@ -60,7 +62,7 @@ class Campaigns extends Base
             'paramsGet'     => [],
             'enableCache'   => true,
         ]);
-        
+
         return $client->request();
     }
 
@@ -78,15 +80,15 @@ class Campaigns extends Base
         if (isset($data['template']['content'])) {
             $data['template']['content'] = base64_encode($data['template']['content']);
         }
-        
+
         if (isset($data['template']['archive'])) {
             $data['template']['archive'] = base64_encode($data['template']['archive']);
         }
-        
+
         if (isset($data['template']['plain_text'])) {
             $data['template']['plain_text'] = base64_encode($data['template']['plain_text']);
         }
-        
+
         $client = new Client([
             'method'        => Client::METHOD_POST,
             'url'           => $this->getConfig()->getApiUrl('campaigns'),
@@ -94,7 +96,7 @@ class Campaigns extends Base
                 'campaign'  => $data
             ],
         ]);
-        
+
         return $client->request();
     }
 
@@ -113,15 +115,15 @@ class Campaigns extends Base
         if (isset($data['template']['content'])) {
             $data['template']['content'] = base64_encode($data['template']['content']);
         }
-        
+
         if (isset($data['template']['archive'])) {
             $data['template']['archive'] = base64_encode($data['template']['archive']);
         }
-        
+
         if (isset($data['template']['plain_text'])) {
             $data['template']['plain_text'] = base64_encode($data['template']['plain_text']);
         }
-        
+
         $client = new Client([
             'method'        => Client::METHOD_PUT,
             'url'           => $this->getConfig()->getApiUrl(sprintf('campaigns/%s', $campaignUid)),
@@ -129,7 +131,7 @@ class Campaigns extends Base
                 'campaign'  => $data
             ],
         ]);
-        
+
         return $client->request();
     }
 
@@ -148,7 +150,7 @@ class Campaigns extends Base
             'method'    => Client::METHOD_POST,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/copy', $campaignUid)),
         ]);
-        
+
         return $client->request();
     }
 
@@ -167,7 +169,7 @@ class Campaigns extends Base
             'method'    => Client::METHOD_PUT,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/pause-unpause', $campaignUid)),
         ]);
-        
+
         return $client->request();
     }
 
@@ -186,7 +188,7 @@ class Campaigns extends Base
             'method'    => Client::METHOD_PUT,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s/mark-sent', $campaignUid)),
         ]);
-        
+
         return $client->request();
     }
 
@@ -205,7 +207,7 @@ class Campaigns extends Base
             'method'    => Client::METHOD_DELETE,
             'url'       => $this->getConfig()->getApiUrl(sprintf('campaigns/%s', $campaignUid)),
         ]);
-        
+
         return $client->request();
     }
 
