@@ -28,6 +28,18 @@ echo '</pre>';
 
 /*===================================================================================*/
 
+/*===================================================================================*/
+
+// GET SEGMENT SUBSCRIBERS
+$response = $endpoint->getSubscribers('LIST-UNIQUE-ID', 'SEGMENT-UNIQUE-ID');
+
+// DISPLAY RESPONSE
+echo '<pre>';
+print_r($response->body);
+echo '</pre>';
+
+/*===================================================================================*/
+
 // CREATE A LIST SEGMENT
 $response = $endpoint->create('LIST-UNIQUE-ID', [
     // required

@@ -66,6 +66,34 @@ class ListSegments extends Base
     }
 
     /**
+     * Get subscribers from a certain mail list segment
+     *
+     * Note, the results returned by this endpoint can be cached.
+     *
+     * @param string $listUid
+     * @param string $segmentUid
+     * @param int $page
+     * @param int $perPage
+     *
+     * @return Response
+     * @throws Exception
+     */
+    public function getSubscribers($listUid, $segmentUid, int $page = 1, int $perPage = 10): Response
+    {
+        $client = new Client([
+            'method'        => Client::METHOD_GET,
+            'url'           => $this->getConfig()->getApiUrl(sprintf('lists/%s/segments/%s/subscribers', $listUid, $segmentUid)),
+            'paramsGet'     => [
+                'page'      => $page,
+                'per_page'  => $perPage,
+            ],
+            'enableCache'   => true,
+        ]);
+
+        return $client->request();
+    }
+
+    /**
      * Create a new segment in the given list
      *
      * @param string $listUid
