@@ -19,8 +19,8 @@ class Base extends TestCase
         // configuration object
         try {
             \EmsApi\Base::setConfig(new Config([
-                'apiUrl' => getenv('EMS_API_URL') ? getenv('EMS_API_URL') : '',
-                'apiKey' => getenv('EMS_API_KEY') ? getenv('EMS_API_KEY') : '',
+                'apiUrl' => getenv('EMS_API_URL') ? getenv('EMS_API_URL') : 'https://example.com/api',
+                'apiKey' => getenv('EMS_API_KEY') ? getenv('EMS_API_KEY') : 'test-api-key',
             ]));
         } catch (ReflectionException $e) {
         }
