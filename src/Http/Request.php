@@ -65,7 +65,7 @@ class Request extends Base
         $etagCache = '';
         $cacheKey  = '';
         
-        /** @var CacheAbstract $cacheComponent */
+        /** @var CacheAbstract|null $cacheComponent */
         $cacheComponent = null;
         
         if ($isCacheable) {
@@ -183,8 +183,6 @@ class Request extends Base
             $response->body->add('status', 'error');
             $response->body->add('error', $response->getMessage());
         }
-
-        curl_close($ch);
 
         if ($isCacheable && $response->getIsSuccess() && $body->itemAt('status') == 'success') {
             $etagNew = null;

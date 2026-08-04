@@ -5,6 +5,8 @@ namespace EmsApi\Cache;
 /**
  * Class Apc
  * @package EmsApi\Cache
+ *
+ * APCu-backed cache adapter kept under the historical Apc class name.
  */
 class Apc extends CacheAbstract
 {
@@ -21,7 +23,11 @@ class Apc extends CacheAbstract
      */
     public function set(string $key, $value): bool
     {
-        return apc_store(sha1($key), $value, 0);
+        if (!function_exists('apcu_store')) {
+            return false;
+        }
+
+        return apcu_store(sha1($key), $value, 0);
     }
     
     /**
@@ -37,7 +43,14 @@ class Apc extends CacheAbstract
      */
     public function get(string $key)
     {
-        return apc_fetch(sha1($key));
+        if (!function_exists('apcu_fetch')) {
+            return null;
+        }
+
+        $success = false;
+        $value = apcu_fetch(sha1($key), $success);
+
+        return $success ? $value : null;
     }
     
     /**
@@ -53,7 +66,11 @@ class Apc extends CacheAbstract
      */
     public function delete(string $key): bool
     {
-        return apc_delete(sha1($key));
+        if (!function_exists('apcu_delete')) {
+            return false;
+        }
+
+        return apcu_delete(sha1($key));
     }
     
     /**
@@ -65,6 +82,10 @@ class Apc extends CacheAbstract
      */
     public function flush(): bool
     {
-        return apc_clear_cache('user');
+        if (!function_exists('apcu_clear_cache')) {
+            return false;
+        }
+
+        return apcu_clear_cache();
     }
 }

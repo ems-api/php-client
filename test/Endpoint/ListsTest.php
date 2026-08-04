@@ -80,7 +80,7 @@ class ListsTest extends Base
         $this->assertTrue($response->getIsSuccess());
         $this->assertIsArray($response->body->itemAt('data'));
 
-        $general = isset($response->body->itemAt('data')['record']['general']) ? $response->body->itemAt('data')['record']['general'] : [];
+        $general = $response->body->itemAt('data')['record']['general'] ?? [];
         $this->assertArrayHasKey('list_uid', $general);
     }
 

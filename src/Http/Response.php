@@ -154,7 +154,7 @@ class Response extends Base
     public function setHttpCode(int $code): self
     {
         $this->_httpCode = $code = (int)$code;
-        $this->httpMessage = isset(self::$statusTexts[$code]) ? self::$statusTexts[$code] : null;
+        $this->httpMessage = self::$statusTexts[$code] ?? null;
         return $this;
     }
     
