@@ -3,3 +3,4 @@ vendor
 .DS_Store
 .php_cs.cache
 .phpunit.result.cache
+.phpunit.cache
