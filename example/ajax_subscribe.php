@@ -11,9 +11,9 @@ if ($isAjaxRequest && !empty($_POST)) {
     $listUid    = 'LIST-UNIQUE-ID';// you'll take this from your customers area, in list overview from the address bar.
     $endpoint   = new EmsApi\Endpoint\ListSubscribers();
     $response   = $endpoint->create($listUid, [
-        'EMAIL' => isset($_POST['EMAIL']) ? $_POST['EMAIL'] : null,
-        'FNAME' => isset($_POST['FNAME']) ? $_POST['FNAME'] : null,
-        'LNAME' => isset($_POST['LNAME']) ? $_POST['LNAME'] : null,
+        'EMAIL' => $_POST['EMAIL'] ?? null,
+        'FNAME' => $_POST['FNAME'] ?? null,
+        'LNAME' => $_POST['LNAME'] ?? null,
     ]);
     $response   = $response->body;
     

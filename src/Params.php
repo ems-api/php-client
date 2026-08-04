@@ -67,7 +67,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
     /**
      * @return boolean whether this map is read-only or not. Defaults to false.
      */
-    public function getReadOnly()
+    public function getReadOnly(): bool
     {
         return $this->_readOnly;
     }
@@ -76,7 +76,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @param boolean $value whether this list is read-only or not
      * @return void
      */
-    protected function setReadOnly($value)
+    protected function setReadOnly(bool $value): void
     {
         $this->_readOnly = $value;
     }
@@ -86,8 +86,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * This method is required by the interface IteratorAggregate.
      * @return ParamsIterator an iterator for traversing the items in the list.
      */
-    #[\ReturnTypeWillChange]
-    public function getIterator()
+    public function getIterator(): Traversable
     {
         return new ParamsIterator($this->_data);
     }
@@ -97,8 +96,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * This method is required by Countable interface.
      * @return integer number of items in the map.
      */
-    #[\ReturnTypeWillChange]
-    public function count()
+    public function count(): int
     {
         return $this->getCount();
     }
@@ -107,7 +105,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * Returns the number of items in the map.
      * @return integer the number of items in the map
      */
-    public function getCount()
+    public function getCount(): int
     {
         return count($this->_data);
     }
@@ -115,7 +113,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
     /**
      * @return array the key list
      */
-    public function getKeys()
+    public function getKeys(): array
     {
         return array_keys($this->_data);
     }
@@ -128,7 +126,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      */
     public function itemAt($key)
     {
-        return isset($this->_data[$key]) ? $this->_data[$key] : null;
+        return $this->_data[$key] ?? null;
     }
 
     /**
@@ -195,7 +193,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @param mixed $key the key
      * @return boolean whether the map contains an item with the specified key
      */
-    public function contains($key)
+    public function contains($key): bool
     {
         return isset($this->_data[$key]) || array_key_exists($key, $this->_data);
     }
@@ -203,7 +201,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
     /**
      * @return array the list of items in array
      */
-    public function toArray()
+    public function toArray(): array
     {
         return $this->_data;
     }
@@ -218,7 +216,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      */
     public function copyFrom($data)
     {
-        if (is_array($data) || $data instanceof Traversable) {
+        if (is_iterable($data)) {
             if ($this->getCount()>0) {
                 $this->clear();
             }
@@ -254,7 +252,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      */
     public function mergeWith($data, $recursive=true)
     {
-        if (is_array($data) || $data instanceof Traversable) {
+        if (is_iterable($data)) {
             if ($data instanceof Params) {
                 $data = $data->_data;
             }
@@ -317,8 +315,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @param mixed $offset the offset to check on
      * @return boolean
      */
-    #[\ReturnTypeWillChange]
-    public function offsetExists($offset)
+    public function offsetExists(mixed $offset): bool
     {
         return $this->contains($offset);
     }
@@ -329,8 +326,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @param int $offset the offset to retrieve element.
      * @return mixed the element at the offset, null if no element is found at the offset
      */
-    #[\ReturnTypeWillChange]
-    public function offsetGet($offset)
+    public function offsetGet(mixed $offset): mixed
     {
         return $this->itemAt($offset);
     }
@@ -345,8 +341,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @return void
      * @throws Exception
      */
-    #[\ReturnTypeWillChange]
-    public function offsetSet($offset, $item)
+    public function offsetSet(mixed $offset, mixed $item): void
     {
         $this->add($offset, $item);
     }
@@ -360,8 +355,7 @@ class Params extends Base implements IteratorAggregate, ArrayAccess, Countable
      * @return void
      * @throws Exception
      */
-    #[\ReturnTypeWillChange]
-    public function offsetUnset($offset)
+    public function offsetUnset(mixed $offset): void
     {
         $this->remove($offset);
     }

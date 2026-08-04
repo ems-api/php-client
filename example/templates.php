@@ -51,7 +51,7 @@ echo '</pre>';
 /*===================================================================================*/
 
 // CREATE A NEW TEMPLATE
-$rand = rand();
+$rand = random_int(0, mt_getrandmax());
 $response = $endpoint->create([
     'name'          => 'My API template ' . $rand,
     'content'       => file_get_contents(__DIR__ . '/template-example.html'),

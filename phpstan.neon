@@ -1,3 +1,5 @@
 parameters:
-    checkGenericClassInNonGenericObjectType: false
-    checkMissingIterableValueType: false
+    level: 3
+    paths:
+        - src
+    tmpDir: .phpstan
